@@ -1,5 +1,6 @@
 import irrf
 import inss
+from decimal import Decimal
 
 class ConfigurationData:
     def __init__(self):
@@ -14,7 +15,8 @@ def calculate_net_salary(salary=0, number_dependents=0, config=ConfigurationData
     irrf_rate = irrf.get_irrf_by_value(base_irrf, config.irrf_table)
     irrf_value = irrf_rate.calculate(base_irrf, number_dependents)
 
-    return salary - (inss_value + irrf_value)
+    net_salary = Decimal(salary) - Decimal(inss_value + irrf_value)
+    return round(net_salary,2)
 
 def calculate_net_salaries(salaries=[], number_dependents=0, config=ConfigurationData()):
     result = []
