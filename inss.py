@@ -11,12 +11,11 @@ class InssRate:
         return base * self.rate / 100
 
 def load_inss(csv_file_path='inss.csv'):
-    field_names=['min', 'max', 'rate']
     insss=[]
     with open(csv_file_path) as csvfile:
-        reader = csv.DictReader(csvfile, fieldnames=field_names)
+        reader = csv.DictReader(csvfile)
         for row in reader:
-            o = InssRate(row['min'], row['max'], row['rate'])
+            o = InssRate(float(row['min']), float(row['max']), float(row['rate']))
             insss.append(o)
     return insss
 

@@ -24,12 +24,11 @@ def load_dependent_reduction(csv_file_path='dependents.csv'):
     return reduction
 
 def load_irrf(csv_file_path='irrf.csv', dependents_reduction=0):
-    field_names=['min', 'max', 'rate', 'deduction']
     irrfs=[]
     with open(csv_file_path) as csvfile:
-        reader = csv.DictReader(csvfile, fieldnames=field_names)
+        reader = csv.DictReader(csvfile)
         for row in reader:
-            o = IrrfRate(row['min'], row['max'], row['rate'], row['deduction'], dependents_reduction)
+            o = IrrfRate(float(row['min']), float(row['max']), float(row['rate']), float(row['deduction']), dependents_reduction)
             irrfs.append(o)
     return irrfs
 

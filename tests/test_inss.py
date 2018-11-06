@@ -18,7 +18,7 @@ class TestInss(unittest.TestCase):
         result = self.inss.calculate(4000)
         self.assertEqual(result, 300)
 
-class TestLoadInss(unittest.TestCase):
+class TestSelectionInss(unittest.TestCase):
     def setUp(self):
         self.table = [
             InssRate(0,1000,9),
@@ -34,6 +34,11 @@ class TestLoadInss(unittest.TestCase):
     def test_loadAboveLimit(self):
         inssRate = inss.get_Inss_by_value(5000, self.table)
         self.assertEqual(11, inssRate.rate)
+
+class TestReadingInss(unittest.TestCase):
+    def test_loadFromDefault(self):
+        table = inss.load_inss()
+        self.assertEqual(len(table), 3)
 
 if __name__ == "__main__":
     unittest.main()

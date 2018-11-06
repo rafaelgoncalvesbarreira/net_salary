@@ -23,7 +23,7 @@ class TestIrrf(unittest.TestCase):
         irrf_value = irrf_rate.calculate(3000,1)
         self.assertEqual(irrf_value, 190)
 
-class TestLoadInss(unittest.TestCase):
+class TestSelectionInss(unittest.TestCase):
     def setUp(self):
         self.table = [
             IrrfRate(0,1800,0,0,100),
@@ -35,6 +35,10 @@ class TestLoadInss(unittest.TestCase):
         irrf_rate = irrf.get_irrf_by_value(3000,self.table)
         self.assertEqual(irrf_rate.rate, 10)
 
+class TestReadingIrrf(unittest.TestCase):
+    def test_loadFromDefault(self):
+        table = irrf.load_irrf()
+        self.assertEqual(len(table), 5)
 
 if __name__ == "__main__":
     unittest.main()
