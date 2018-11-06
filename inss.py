@@ -8,7 +8,8 @@ class InssRate:
     
     def calculate(self, value):
         base = value if value< self.max else self.max
-        return base * self.rate / 100
+        value = base * self.rate / 100
+        return round(value,2)
 
 def load_inss(csv_file_path='inss.csv'):
     insss=[]

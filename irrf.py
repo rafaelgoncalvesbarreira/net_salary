@@ -14,7 +14,7 @@ class IrrfRate:
             base = base_value if dependents==0 else base_value - (dependents * self.dependents_reduction)
             rate = base * self.rate / 100
             value = rate - self.deduction
-        return value
+        return round(value,2)
 
 def load_dependent_reduction(csv_file_path='dependents.csv'):
     reduction = 0
